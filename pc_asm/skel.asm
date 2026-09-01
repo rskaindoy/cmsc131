@@ -9,7 +9,7 @@ segment .data
 ;
 ; initialized data is put in the data segment here
 ;
-
+hello_msg db "Hello, world!", 0    ; null-terminated string for printing
 
 segment .bss
 ;
@@ -29,6 +29,12 @@ _asm_main:
 ; code is put in the text segment. Do not modify the code before
 ; or after this comment.
 ;
+
+        mov     eax, hello_msg    ; eax = "Hello, world!"
+        call    print_string      ; print(eax)
+
+        call    print_nl             ; print("\n")
+        call    print_nl             ; print("\n")
 
         popa
         mov     eax, 0            ; return back to C
