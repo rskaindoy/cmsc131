@@ -1,0 +1,6 @@
+Enter an integer: -100
+As signed:               -100
+As unsigned:             4294967196
+Divided by 7:            -14 remainder -2
+Times 100000 (unsigned): overflowed
+Times 100000 (signed):   -10000000
