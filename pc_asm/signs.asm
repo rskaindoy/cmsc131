@@ -38,19 +38,19 @@ _asm_main:
         mov     esi, eax                ; the original bits. Never overwrite esi.
 
         ;
-        ; TODO 1: print esi with print_int, which reads the bits as signed.
+        ; print esi with print_int, which reads the bits as signed.
         ;
 
         mov     eax, signed_msg
         call    print_string
 
 	mov 	eax, esi
-	mov 	print_int
+	call 	print_int
 
         call    print_nl
 
         ;
-        ; TODO 2: print the SAME esi with print_uint, which reads the same bits
+        ; print the SAME esi with print_uint, which reads the same bits
         ; as unsigned. You are not converting anything between these two. You
         ; are asking two different questions about one register.
         ;
@@ -63,7 +63,7 @@ _asm_main:
         call    print_nl
 
         ;
-        ; TODO 3: divide esi by 7 with idiv, and print the quotient, then the
+        ; divide esi by 7 with idiv, and print the quotient, then the
         ; rem_msg string, then the remainder.
         ;
         ; idiv pairs with cdq, never with mov edx, 0. And the remainder lands
@@ -84,13 +84,13 @@ _asm_main:
 	mov 	eax, rem_msg
 	call	print_string
 
-	mov eax, edi
-	call print_int
+	mov 	eax, edi
+	call 	print_int
 
         call    print_nl
 
         ;
-        ; TODO 4: multiply esi by 100000 with mul, the unsigned one.
+        ; multiply esi by 100000 with mul, the unsigned one.
         ;
         ; mul writes 64 bits across edx:eax. If edx came out non-zero the
         ; answer did not fit, so print over_msg. Otherwise print eax with
@@ -117,7 +117,7 @@ umul_done:
 	call	print_nl
 
         ;
-        ; TODO 5: multiply esi by 100000 again, this time with the two-operand
+        ; multiply esi by 100000 again, this time with the two-operand
         ; imul, the signed one.
         ;
         ; imul leaves the result in one register and sets the overflow flag if
@@ -143,7 +143,7 @@ umul_done:
 
 imul_overflow:
 	mov	eax, over_msg
-	mov	print_string
+	call	print_string
 
 imul_done:
         call    print_nl
