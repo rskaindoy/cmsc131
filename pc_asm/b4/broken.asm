@@ -28,6 +28,7 @@ _asm_main:
         call    read_int
         mov     ebx, eax
 
+	mov 	edx, 0
         mov     eax, 1000
         div     ebx
 
