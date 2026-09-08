@@ -42,6 +42,42 @@ _asm_main:
         ; Each case prints its word and a newline.
         ;
 	
+	cmp	esi, 0
+	je	.zero
+	jl	.negative
+	jg	.positive	
+
+.negative:
+	mov	eax, neg_msg
+	call	print_string
+	call	print_nl
+
+	mov	eax, none_msg
+	call	print_string
+	call 	print_nl
+
+	jmp 	.done
+
+
+.zero
+	mov	eax, zero_msg
+	call	print_string
+	call	print_nl
+
+	mov	eax, none_msg
+	call	print_string
+	call 	print_nl
+
+	jmp 	.done
+
+.positive
+	mov	eax, pos_msg
+	call	print_string
+	call	print_nl
+
+	mov	ecx, 1		; counter
+	mov 	edi, 0		; total
+
         ;
         ; TODO 2: the counting loop, for the positive case only.
         ;
@@ -64,18 +100,48 @@ _asm_main:
         ;
         ;       mov     eax, ' '
         ;       call    print_char
-        ;
+        ;	
+
+.print_space:
+	cmp	ecx, 1		; to check if its the first number
+	je	.print_num
+
+	mov     eax, ' '
+	call    print_char
+
+.print_num:
+	mov	eax, ecx
+	call	print_int
+
+	add	edi, ecx
+
+	cmp	ecx, esi
+	je	.print_sum
+
+	inc	ecx
+	jmp	.print_space
 
         ;
         ; TODO 3: print sum_msg followed by the total, then a newline.
         ;
 
+.print_sum:
+	call	print_nl
+
+	mov	eax, sum_msg
+	call	print_string
+
+	mov	eax, edi
+	call	print_int
+	call	print_nl
+	
         ;
         ; TODO 4: the negative and zero cases print none_msg instead of
         ; counting anything. Remember that a true branch needs an unconditional
         ; jmp at its end, or it falls straight into the branch below it.
         ;
 
+.done:
         popa
         mov     eax, 0
         leave
