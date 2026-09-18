@@ -1,0 +1,14 @@
+How many readings? 3
+Reading 1 - sensor id: 2
+Reading 1 - value: 100
+Reading 2 - sensor id: 7
+Reading 2 - value: 300
+Reading 3 - sensor id: 4
+Reading 3 - value: 200
+
+Packed: 8292 28972 16584
+Sum: 600
+Average: 200
+Largest from sensor: 7
+Above average: 1
+First reading unpacked: sensor 2, value 100
